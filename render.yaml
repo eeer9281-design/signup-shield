@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: signup-shield
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: RAPIDAPI_PROXY_SECRET
+        sync: false  # Paste the secret RapidAPI GENERATES: Provider Studio -> Hub Listing -> Gateway tab -> Firewall Settings -> Copy
